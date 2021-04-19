@@ -13,19 +13,24 @@ THEN a password is generated that matches the selected criteria
 WHEN the password is generated
 THEN the password is either displayed in an alert or written to the page */
 
+//Possible characters to be used
+var numCharset = ["1234567890"]
+var upCharset = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"]
+var lowCharset = ["abcdefghijklmnopqrstuvwxyz"]
+var specCharset = ["!@#$%^&*()-_=+{}[];':,.<>/?"]
 
 function specifyOptions() {
     //User input variables
     var userPref = {
-        howLong: howLong,
-        numChar: numChar,
-        lowChar: lowChar,
-        upChar: upChar,
-        specChar: specChar
-    };
-    //Get length of password
+            howLong: howLong,
+            numChar: numChar,
+            lowChar: lowChar,
+            upChar: upChar,
+            specChar: specChar
+        }
+        //Get length of password
     var howLong = parseInt(
-        prompt("How long should your password be?")
+        prompt("How long should your password be?") console.log(howLong)
     );
     //Validate number given
     if (isNaN(howLong) === true) {
@@ -47,9 +52,17 @@ function specifyOptions() {
     var lowChar = confirm("");
     var upChar = confirm("");
 
-
-
-);
+    //Make sure user picked at least one charset
+    if (numChar == false &&
+        lowChar == false &&
+        upChar == false &&
+        specChar == false
+    ) {
+        alert("If you're not taking this seriously, I'm out.");
+        return;
+    };
+    return userPref;
+}
 
 function genPass() {
     var length = 8,
