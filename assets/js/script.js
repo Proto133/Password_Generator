@@ -1,36 +1,27 @@
-/*WHEN I click the button to generate a password
-THEN I am presented with a series of prompts for password criteria
-WHEN prompted for password criteria
-THEN I select which criteria to include in the password
-WHEN prompted for the length of the password
-THEN I choose a length of at least 8 characters and no more than 128 characters
-WHEN prompted for character types to include in the password
-THEN I choose lowercase, uppercase, numeric, and/or special characters
-WHEN I answer each prompt
-THEN my input should be validated and at least one character type should be selected
+/*
 WHEN all prompts are answered
 THEN a password is generated that matches the selected criteria
 WHEN the password is generated
 THEN the password is either displayed in an alert or written to the page */
-
 //Possible characters to be used
 var numCharset = ["1234567890"]
 var upCharset = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"]
 var lowCharset = ["abcdefghijklmnopqrstuvwxyz"]
 var specCharset = ["!@#$%^&*()-_=+{}[];':,.<>/?"]
-
+    //Get user prefences for password
 function specifyOptions() {
     //User input variables
     var userPref = {
-            howLong: howLong,
-            numChar: numChar,
-            lowChar: lowChar,
-            upChar: upChar,
-            specChar: specChar
-        }
-        //Get length of password
+        howLong: howLong,
+        numChar: numChar,
+        lowChar: lowChar,
+        upChar: upChar,
+        specChar: specChar
+    }
+    return userPref;
+    //Get length of password
     var howLong = parseInt(
-        prompt("How long should your password be?") console.log(howLong)
+        prompt("How long should your password be?")
     );
     //Validate number given
     if (isNaN(howLong) === true) {
@@ -38,7 +29,7 @@ function specifyOptions() {
         return;
     }
     //Check Password length
-    if (howLong < 8 || howLong < 128) {
+    if (howLong < 8 || howLong > 128) {
         alert("That's either too long or too short, please try again")
         return;
     }
@@ -49,8 +40,8 @@ function specifyOptions() {
     var specChar = confirm(
         "If you'd like special character, like ! ? . / , click OK"
     );
-    var lowChar = confirm("");
-    var upChar = confirm("");
+    var lowChar = confirm("want some lowercase character? click ok");
+    var upChar = confirm("YOU NEED UPPERCASE RIGHT? CLICK OK!");
 
     //Make sure user picked at least one charset
     if (numChar == false &&
@@ -60,18 +51,57 @@ function specifyOptions() {
     ) {
         alert("If you're not taking this seriously, I'm out.");
         return;
-    };
+    }
     return userPref;
 }
-
-function genPass() {
-    var length = 8,
-        charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-        newPass = "";
-    for (var i = 0, n = charset.length; i < length; ++i) {
-        newPass += charset.charAt(Math.random() * n);
-        console.log(retVal)
-    }
-    return newPass;
+//Define randomness for genPass. Verify via console.
+function rando(char) {
+    var rIndex = Math.random() * char.length;
+    var rElement = char[rIndex];
+    console.log(rElement);
+    return rElement;
 }
-document.getElementById("genPass") = newPass
+//Do the damn thing
+function genPass() {
+    var userChoices = specifyOptions();
+    var passArray = [];
+    var passHas = [];
+    var charKind = [];
+
+    // Adhere to user's rules. Verify via console.
+    if (userPref.numChar) {
+        passHas = passHas.concat(numCharset);
+        console.log(passHas);
+        charKind.push(rando(numCharset));
+
+    }
+    if (userPref.lowChar) {
+        passHas = passHas.concat(lowCharset);
+        console.log(passHas);
+        charKind.push(rando(lowCharset));
+    }
+    if (userPref.upChar) {
+        passHas = passHas.concat(upCharset),
+            console.log(passHas),
+            charKind.push(rando(upCharset))
+    }
+    if (userChoices.specChar) {
+        passHas = passHas.concat(specCharset);
+        console.log(passHas);
+        charKind.push(rando(specCharset));
+    }
+    //Take if statements and put them together to meet length requirement from user input
+    for (var i = 0; i < userPref.howLong; i++) {
+        passHas = rando(passHas);
+        passArray.push(passHas);
+    }
+    //Make sure that there's at least 1 of each kinds of selected charactersets. Verify via console.
+    for (var i = 0; i < charKind.howLong; i++) {
+        passArray[i] = charKind[i];
+        console.log("passHas: " + passHas),
+            conlose.log("charKind: " + charKind),
+            console.log("passArray: " + passArray)
+
+    }
+    return passArray.join("");
+}
