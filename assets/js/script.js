@@ -85,18 +85,22 @@ function specifyOptions() {
     };
     return userPref;
 }
-//Define randomness for genPass. Verify via console.
+//Retrieve a random character from charactersets defined in genPass. Verify via console.
 function rando(char) {
     var rIndex = Math.floor(Math.random() * char.length);
     var rElement = char[rIndex];
     console.log(rElement);
     return rElement;
 }
-//Do the damn thing
+//Generate a Password
 function genPass() {
+    //Store the user input from prompts into a variable
     var userChoices = specifyOptions();
+    //Create an array for the password
     var passArray = [];
+    //Create an array for the possible characters the password can have.
     var passHas = [];
+    //Create an array for the
     var charKind = [];
 
     /* Adhere to user's rules. 
@@ -104,10 +108,12 @@ function genPass() {
 
     //Numbers 
     if (userChoices.numChar) {
+
+        //Adds numbers to the list of possible characters
         passHas = passHas.concat(numCharset);
         //Verify
-        // console.log(passHas);
-        ////Add one number to charKind Array
+        console.log(passHas)
+            ////Add one number to charKind Array
         charKind.push(rando(numCharset));
 
     }
@@ -115,15 +121,15 @@ function genPass() {
     if (userChoices.lowChar) {
         passHas = passHas.concat(lowCharset);
         //Verify
-        // console.info(passHas);
-        //Add one lowercase to charKind Array
+        console.info(passHas)
+            //Add one lowercase to charKind Array
         charKind.push(rando(lowCharset));
     }
     //Uppercase
     if (userChoices.upChar) {
         passHas = passHas.concat(upCharset);
         //Verify
-        // console.info(passHas);
+        console.info(passHas);
         //Add one uppercase to charKind Array
         charKind.push(rando(upCharset));
     }
