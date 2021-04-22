@@ -87,9 +87,11 @@ function specifyOptions() {
 }
 //Retrieve a random character from charactersets defined in genPass. Verify via console.
 function rando(char) {
+    //rIndex picks a  random index between the parameters of length of the array.
     var rIndex = Math.floor(Math.random() * char.length);
+    //rElement is the result of the character residing at that index position.
     var rElement = char[rIndex];
-    console.log(rElement);
+    //Returns the selected character.
     return rElement;
 }
 //Generate a Password
@@ -100,13 +102,13 @@ function genPass() {
     var passArray = [];
     //Create an array for the possible characters the password can have.
     var passHas = [];
-    //Create an array for the
+    //Create an array for the selected characters from the 
     var charKind = [];
 
     /* Adhere to user's rules. 
     Verify via console.*/
 
-    //Numbers 
+    //If user opted in on numbers, then add numChar to the possible characters.
     if (userChoices.numChar) {
 
         //Adds numbers to the list of possible characters
@@ -117,7 +119,7 @@ function genPass() {
         charKind.push(rando(numCharset));
 
     }
-    //Lowercase
+    // If user opted in on lowercase, then add lowChar to the possible characters.
     if (userChoices.lowChar) {
         passHas = passHas.concat(lowCharset);
         //Verify
@@ -143,23 +145,48 @@ function genPass() {
     }
     //Take if statements and use the data to put together password into passArray , the ultimate culmination of all of the rules 
     for (var i = 0; i < userChoices.howLong; i++) {
+        //Pick a unique character from the array passHas
         uniqueChar = rando(passHas);
+        //Push the seleceted character from above into the the passArray array. Do this until the array is the specified length in userChoices.
         passArray.push(uniqueChar);
+        //Verify selection
+        console.log(uniqueChar);
     }
 
     /*Make sure that there's at least 1 of each kinds of selected charactersets. 
     Verify via console.*/
-    for (var i = 0; i < charKind.howLong; i++) {
+    /*For each selected characterset pick one, create an array of those until it's length reaches the number of charactersets selected. 
+    Push this array to passAray until passArray exceeds the lenght of this charKind.*/
+    for (var i = 0; i < charKind.length; i++) {
+        //Push a value from each of the selected charactersets
         passArray[i] = charKind[i];
+        // Verify via console.
+        console.log(charKind);
+        // Verify via console.
+        console.log(passArray);
     }
-
+    //Returns the final array from the function above. 
     return passArray.join("");
 }
 
 //function to reveal the completed password 
 function showPass() {
     var password = genPass();
-    var passwordText = document.querySelector('#password');
+    var passwordText = document.querySelector("#password");
 
     passwordText.value = password;
 }
+//Disables copy button until the password is generated.
+//Setting variables for HTML elements
+var passTextarea = document.querySelector("#password");
+var copyBtn = document.querySelector("#copy");
+
+
+function copy() {
+    var copyText = document.querySelector("#password");
+    copyText.select();
+    document.execCommand("copy");
+
+}
+
+document.querySelector("#copy").addEventListener("click", copy);
