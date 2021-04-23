@@ -203,14 +203,19 @@ function enableCopy() {
 var passTextarea = document.querySelector("#password");
 var copyBtn = document.querySelector("#copy");
 var copyConfirm = document.querySelector("#copyConfirm");
-
+//Calls on browser to execute the copy
 function copy() {
+    //Sets textarea password as a local variable
     var copyText = document.querySelector("#password");
     copyText.select();
     document.execCommand("copy");
+    //displays the Generated password in the copied on clipboard area on click.
     copyConfirm.value = passTextarea.value;
+    //alerts the user what has been copied.
     alert(passTextarea.value + " has been copied to clipboard!")
 
 }
+//As soon as the passTxt value is changed, enable the copy button.
 passTxt.addEventListener("change", enableCopy);
+//Adds listener for click to copy button
 document.querySelector("#copy").addEventListener("click", copy);
