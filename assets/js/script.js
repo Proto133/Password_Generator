@@ -168,15 +168,37 @@ function genPass() {
     //Returns the final array from the function above. 
     return passArray.join("");
 }
+//Create Global variables for buttons and textarea
+var genBtn = document.querySelector("#startPass")
+var cpyBtn = document.querySelector("#copy")
+var passTxt = document.querySelector("#password")
+
 
 //function to reveal the completed password 
 function showPass() {
     var password = genPass();
     var passwordText = document.querySelector("#password");
-
+    cpyBtn.setAttribute("class", "btn");
     passwordText.value = password;
+
+
 }
+//Invoke showPass on clck
+genBtn.addEventListener("click", showPass);
+
+
 //Disables copy button until the password is generated.
+
+function enableCopy() {
+    if (document.querySelector("#password").textContent === "") {
+        //button remains disabled
+        cpyBtn.disabled = true;
+    } else {
+        //button is enabled
+        copyBtn.disabled = false;
+    }
+}
+
 //Setting variables for HTML elements
 var passTextarea = document.querySelector("#password");
 var copyBtn = document.querySelector("#copy");
@@ -188,5 +210,5 @@ function copy() {
     document.execCommand("copy");
 
 }
-
+passTxt.addEventListener("change", enableCopy);
 document.querySelector("#copy").addEventListener("click", copy);

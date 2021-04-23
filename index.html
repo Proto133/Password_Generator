@@ -7,11 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Password Generator</title>
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <script defer src="./assets/js/script.js"></script>
 
 </head>
 
 <body>
-    <script src="./assets/js/script.js"></script>
+
     <div class="wrapper">
         <header>
             <h1>Password Generator</h1>
@@ -24,11 +25,12 @@
                 <textarea readonly id="password" placeholder="Your Secure Password" aria-label="Generated Password"></textarea>
             </div>
             <div class="card-footer">
-                <button id="startPass" onclick="showPass()" class="btn">Generate Password </button>
-                <button id="copy" onclick="copy()" class="btn">Copy Password to Clipboard</button>
+                <button id="startPass" class="btn">Generate Password </button>
+                <button id="copy" class="btn-disabled">Copy Password to Clipboard</button>
             </div>
         </div>
     </div>
+
 </body>
 
 </html>
