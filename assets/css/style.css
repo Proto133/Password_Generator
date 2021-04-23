@@ -9,6 +9,8 @@ body,
 .wrapper {
     margin: 0;
     padding: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 body {
@@ -71,10 +73,11 @@ header {
     content: " ";
     display: block;
     width: 100%;
-    background: #e7e9eb;
+    background: #000000;
     height: 2px;
 }
 
+.card-body,
 .card-body {
     min-height: 100px;
 }
@@ -87,7 +90,7 @@ header {
     content: " ";
     display: block;
     width: 100%;
-    background: #e7e9eb;
+    background: #050505;
     height: 2px;
 }
 
@@ -129,19 +132,19 @@ header {
     width: 300px;
 }
 
-
-}
 .float-right {
     float: right;
 }
+
 .clipWindow {
     border-top: 1px solid black;
     background-color: lightgray;
     width: 80%;
-    margin: 1% 10%;
+    margin: 3% 10%;
     min-height: 5em;
     border-radius: 6px;
 }
+
 #copyConfirm {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -160,6 +163,7 @@ header {
     overflow: hidden;
     background-color: lightgray;
 }
+
 #password {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -180,22 +184,22 @@ header {
     overflow: hidden;
     background-color: lightgray;
 }
+
 @media (max-width: 690px) {
     .btn {
         font-size: 1rem;
         margin: 16px 0px 0px 0px;
         padding: 10px 15px;
     }
-    
     #password {
         font-size: 1rem;
     }
 }
+
 @media (max-width: 500px) {
     .btn-disabled {
         font-size: 0.8rem;
     }
-    
     .btn {
         font-size: 0.8rem;
     }

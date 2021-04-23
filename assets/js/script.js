@@ -202,12 +202,14 @@ function enableCopy() {
 //Setting variables for HTML elements
 var passTextarea = document.querySelector("#password");
 var copyBtn = document.querySelector("#copy");
-
+var copyConfirm = document.querySelector("#copyConfirm");
 
 function copy() {
     var copyText = document.querySelector("#password");
     copyText.select();
     document.execCommand("copy");
+    copyConfirm.value = passTextarea.value;
+    alert(passTextarea.value + " has been copied to clipboard!")
 
 }
 passTxt.addEventListener("change", enableCopy);
