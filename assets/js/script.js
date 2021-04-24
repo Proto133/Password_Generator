@@ -212,7 +212,7 @@ function copy() {
     //displays the Generated password in the copied on clipboard area on click.
     copyConfirm.value = passTextarea.value;
     //alerts the user what has been copied.
-    alert(passTextarea.value + " has been copied to clipboard!")
+    // alert(passTextarea.value + " has been copied to clipboard!")
 
 }
 //As soon as the passTxt value is changed, enable the copy button.
